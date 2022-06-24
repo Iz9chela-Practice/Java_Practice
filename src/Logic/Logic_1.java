@@ -7,7 +7,7 @@ public class Logic_1 {
 //        teaParty(3, 8);
 //        in1To10(9, true);
 //        inOrderEqual(2, 5, 11, false);
-        // sumLimit(8, 3);
+//        sumLimit(8, 3);
     }
 
     public boolean twoAsOne(int a, int b, int c) {
@@ -247,16 +247,13 @@ public class Logic_1 {
     }
 
     public String alarmClock(int day, boolean vacation) {
-        if(vacation && (day >=1 && day <= 5)){
+        if (vacation && (day >= 1 && day <= 5)) {
             return "10:00";
-        }
-        else if(vacation && (day == 0 || day == 6)){
+        } else if (vacation && (day == 0 || day == 6)) {
             return "off";
-        }
-        else if(!vacation && (day >=1 && day <= 5)){
+        } else if (!vacation && (day >= 1 && day <= 5)) {
             return "7:00";
-        }
-        else{
+        } else {
             return "10:00";
         }
     }
