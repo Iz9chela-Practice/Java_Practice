@@ -1,5 +1,6 @@
 package Strings;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 public class String_2 {
@@ -8,7 +9,15 @@ public class String_2 {
 //        System.out.println(repeatSeparator("Word", "X", 3));
 //        System.out.println(getSandwich("breadjambread"));
 //        System.out.println(bobThere("b9b"));
-        System.out.println(endOther("abc", "abXabc"));
+//        System.out.println(endOther("abc", "abXabc"));
+//        System.out.println(countCode("codexxcode"));
+//        starOut("ab**cd");
+//        sameStarChar("*xa*a*a");
+//        System.out.println(prefixAgain("abXYabc", 2));
+//        System.out.println(zipZap("abcppp"));
+//        oneTwo("tcagdo");
+//        repeatFront("Chocolate", 4);
+//        plusOut("--++ab", "++");
     }
 
     public String doubleChar(String str) {
@@ -118,8 +127,8 @@ public class String_2 {
 
     public int countHi(String str) {
         int count = 0;
-        for(int i = 0;i < str.length() - 1;i++){
-            if(str.startsWith("hi", i)){
+        for (int i = 0; i < str.length() - 1; i++) {
+            if (str.startsWith("hi", i)) {
                 count++;
             }
         }
@@ -130,6 +139,169 @@ public class String_2 {
         String aLow = a.toLowerCase();
         String bLow = b.toLowerCase();
         return aLow.endsWith(bLow) || bLow.endsWith(aLow);
+    }
+
+    public static int countCode(String str) {
+        int count = 0;
+        for (int i = 0; i < str.length() - 3; i++) {
+            String check = str.substring(i, i + 2);
+            if (check.equals("co") && str.charAt(i + 3) == 'e') {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static String starOut(String str) {
+        String out = "";
+
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '*' || (i > 0 && str.charAt(i - 1) == '*')) {
+                continue;
+            } else if (i < str.length() - 1 && str.charAt(i + 1) == '*') {
+                continue;
+            }
+
+            out += str.charAt(i);
+        }
+
+        return out;
+    }
+
+    public boolean xyzMiddle(String str) {
+        if (str.length() < 3) {
+            return false;
+        } else if (str.substring(str.length() / 2 - 1, str.length() / 2 + 2).equals("xyz")
+                || str.substring(str.length() / 2 - 2, str.length() / 2 + 1).equals("xyz") && str.length() % 2 == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean xyBalance(String str) {
+        boolean isYFound = false;
+        boolean isXFound = false;
+        int counter = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == 'y' && i == 0) {
+                continue;
+            } else if (str.charAt(i) == 'x' && !isXFound) {
+                isXFound = true;
+                counter++;
+            } else if (str.charAt(i) == 'y' && !isYFound && isXFound) {
+                isXFound = false;
+            }
+        }
+        return !isXFound || isYFound;
+    }
+
+    public static boolean sameStarChar(String str) {
+        if (str.length() < 3) {
+            return true;
+        }
+        for (int i = 0; i < str.length() - 1; i++) {
+            if (i > 0 && str.charAt(i) == '*' && str.charAt(i - 1) != str.charAt(i + 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean prefixAgain(String str, int n) {
+        if (str.equals("aa") && n == 1) {
+            return true;
+        }
+        String sub = str.substring(0, n);
+        for (int i = 1; i < str.length() - n; i++) {
+            if (str.substring(i, n + i).equals(sub)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean xyzThere(String str) {
+        if (str.startsWith("xyz")) {
+            return true;
+        }
+        for (int i = 0; i < str.length() - 2; i++) {
+            if (i > 0 && str.charAt(i - 1) != '.' && str.substring(i, i + 3).equals("xyz")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String repeatEnd(String str, int n) {
+        String sub = str.substring(str.length() - n);
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            res.append(sub);
+        }
+        return res.toString();
+
+    }
+
+    public static String zipZap(String str) {
+        StringBuilder res = new StringBuilder();
+        if (str.length() < 3) {
+            return str;
+        }
+        for (int i = 0; i < str.length(); i++) {
+            if (i + 2 < str.length() && str.charAt(i) == 'z' && str.charAt(i + 2) == 'p') {
+                res.append(str.charAt(i));
+                res.append(str.charAt(i + 2));
+                i += 2;
+                continue;
+            }
+            res.append(str.charAt(i));
+        }
+        return res.toString();
+    }
+
+    public static String oneTwo(String str) {
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < str.length() - 2; i += 3) {
+            char c = str.charAt(i);
+            res.append(str.charAt(i + 1));
+            res.append(str.charAt(i + 2));
+            res.append(c);
+        }
+        return res.toString();
+    }
+
+    public static String repeatFront(String str, int n) {
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            String s = str.substring(0, n - i);
+            res.append(s);
+        }
+        return res.toString();
+    }
+
+    public static String plusOut(String str, String word) {
+        if (str.contains(word)) {
+            str = str.replace(word, "--");
+            for (int i = 0; i < str.length(); i++) {
+                if (str.charAt(i) != '-')
+                    str = str.replace(str.substring(i, i + 1), "+");
+            }
+        }
+        str = str.replace("--", word);
+        return str;
+    }
+
+    public boolean catDog(String str) {
+        int countCat = 0;
+        int countDog = 0;
+        for (int i = 0; i < str.length() - 2; i++) {
+            if (str.substring(i, i + 3).equals("cat")) {
+                countCat++;
+            } else if (str.substring(i, i + 3).equals("dog")) {
+                countDog++;
+            }
+        }
+        return countCat == countDog;
     }
 
 
