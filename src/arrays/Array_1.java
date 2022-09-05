@@ -1,7 +1,6 @@
-package Arrays;
+package arrays;
 
 import java.util.Arrays;
-import java.util.OptionalInt;
 
 public class Array_1 {
     public static void main(String[] args) {

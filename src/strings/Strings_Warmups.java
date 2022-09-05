@@ -1,4 +1,4 @@
-package Strings;
+package strings;
 
 public class Strings_Warmups {
     public static void main(String[] args) {

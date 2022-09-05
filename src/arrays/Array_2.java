@@ -1,7 +1,4 @@
-package Arrays;
-
-import java.util.Arrays;
-import java.util.OptionalInt;
+package arrays;
 
 public class Array_2 {
     public static void main(String[] args) {
@@ -10,6 +7,7 @@ public class Array_2 {
 //        System.out.println(centeredAverage(new int[]{1, 2, 3, 4, 100}));
 //        System.out.println(Arrays.toString(zeroFront(new int[]{0, 1, 1, 0, 1})));
 //        System.out.println(Arrays.toString(shiftLeft(new int[]{6, 2, 5, 3})));
+
 
     }
 

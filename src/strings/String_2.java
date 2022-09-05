@@ -1,7 +1,4 @@
-package Strings;
-
-import java.util.Arrays;
-import java.util.Locale;
+package strings;
 
 public class String_2 {
     public static void main(String[] args) {
